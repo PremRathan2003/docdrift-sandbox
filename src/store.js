@@ -8,19 +8,19 @@ function listTasks() {
   return tasks;
 }
 
-function createTask(title) {
+function createTask(title, priority = 'medium') {
   if (tasks.length >= limit) {
     throw new Error(`Task limit of ${limit} reached`);
   }
-  const task = { id: nextId++, title, done: false, createdAt: new Date().toISOString() };
+  const task = { id: nextId++, title, completed: false, priority, createdAt: new Date().toISOString() };
   tasks.push(task);
   return task;
 }
 
-function markDone(id) {
+function markCompleted(id) {
   const task = tasks.find((t) => t.id === id);
-  if (task) task.done = true;
+  if (task) task.completed = true;
   return task;
 }
 
-module.exports = { listTasks, createTask, markDone };
+module.exports = { listTasks, createTask, markCompleted };
