@@ -1,6 +1,7 @@
 // In-memory task store. Data is lost when the server restarts.
 const limit = Number(process.env.TASKS_LIMIT ?? 100);
 
+// Ids start at 1 and are never reused.
 let nextId = 1;
 const tasks = [];
 
@@ -17,8 +18,12 @@ function createTask(title) {
   return task;
 }
 
+function findTask(id) {
+  return tasks.find((t) => t.id === id);
+}
+
 function markDone(id) {
-  const task = tasks.find((t) => t.id === id);
+  const task = findTask(id);
   if (task) task.done = true;
   return task;
 }
