@@ -1,5 +1,5 @@
 // In-memory task store. Data is lost when the server restarts.
-const limit = Number(process.env.TASKS_LIMIT ?? 100);
+const limit = Number(process.env.MAX_TASKS ?? 500);
 
 let nextId = 1;
 const tasks = [];
