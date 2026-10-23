@@ -19,7 +19,7 @@ Returns all tasks.
 
 ```json
 [
-  { "id": 1, "title": "Write docs", "done": false, "createdAt": "2026-09-21T10:00:00.000Z" }
+  { "id": 1, "title": "Write docs", "done": false, "priority": "medium", "createdAt": "2026-09-21T10:00:00.000Z" }
 ]
 ```
 
@@ -28,16 +28,16 @@ Returns all tasks.
 Creates a task. Request body:
 
 ```json
-{ "title": "Write docs" }
+{ "title": "Write docs", "priority": "medium" }
 ```
 
 Responds `201 Created` with the new task:
 
 ```json
-{ "id": 1, "title": "Write docs", "done": false, "createdAt": "2026-09-21T10:00:00.000Z" }
+{ "id": 1, "title": "Write docs", "done": false, "priority": "medium", "createdAt": "2026-09-21T10:00:00.000Z" }
 ```
 
-Returns `400` if `title` is missing and `409` when the task limit is reached.
+Returns `400` if `title` is missing, if `priority` is invalid (must be 'low', 'medium', or 'high'), and `409` when the task limit is reached.
 
 ### `POST /tasks/:id/done`
 
